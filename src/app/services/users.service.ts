@@ -47,7 +47,7 @@ export class UsersService {
     },
   ]
 
-  getUsers(): Observable<any[]> {
+  getUsersList(): Observable<any[]> {
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.usersList);
