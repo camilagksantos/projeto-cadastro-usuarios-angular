@@ -5,6 +5,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
+import { UsersCardListComponent } from './users-card-list/users-card-list.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   imports: [
@@ -13,10 +15,16 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AngularMaterialModule,
     DirectivesModule,
-    PipesModule
+    PipesModule,
   ],
-  declarations: [],
-  exports: []
+  declarations: [
+    UsersCardListComponent,
+    UserFormComponent
+  ],
+  exports: [
+    UsersCardListComponent,
+    UserFormComponent
+  ]
 })
 export class ComponentsModule { }
 
