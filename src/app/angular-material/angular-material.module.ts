@@ -8,6 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatProgressBarModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   declarations: [],
   exports: [
@@ -30,7 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatProgressBarModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [
     provideNativeDateAdapter()
