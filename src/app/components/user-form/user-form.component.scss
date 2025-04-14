@@ -1,10 +1,12 @@
 .user-form {
     height: 100%;
     padding: 20px;
+    max-width: 100%;
 
     &__row {
-        height: 100%;
+        height: auto;
         display: flex;
+        flex-wrap: wrap;
     }
 
     &__item {
@@ -19,3 +21,64 @@
         width: 100%;
     }
 }
+
+//opção do professor
+// .weak-password {
+//     ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+//         --mdc-linear-progress-active-indicator-color: red !important;
+//     }
+// }
+
+// .medium-password {
+//     ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+//         --mdc-linear-progress-active-indicator-color: orange !important;
+//     }
+// }
+
+// .strong-password {
+//     ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+//         --mdc-linear-progress-active-indicator-color: green !important;
+//     }
+// }
+
+// opção do deepseek
+// ::ng-deep .mat-mdc-progress-bar {
+
+//     &.weak-password .mdc-linear-progress__bar-inner {
+//         border-color: red !important;
+//     }
+
+//     &.medium-password .mdc-linear-progress__bar-inner {
+//         border-color: orange !important;
+//     }
+
+//     &.strong-password .mdc-linear-progress__bar-inner {
+//         border-color: green !important;
+//     }
+// }
+
+// opção do claude
+.weak-password {
+    --mdc-linear-progress-active-indicator-color: red;
+}
+
+.medium-password {
+    --mdc-linear-progress-active-indicator-color: orange;
+}
+
+.strong-password {
+    --mdc-linear-progress-active-indicator-color: green;
+}
+
+// // opção do gpt NÃO FUNCIONA
+// ::ng-deep .mat-progress-bar.weak-password {
+//     --mdc-linear-progress-active-indicator-color: #f44336 !important;
+// }
+
+// ::ng-deep .mat-progress-bar.medium-password {
+//     --mdc-linear-progress-active-indicator-color: #ff9800 !important;
+// }
+
+// ::ng-deep .mat-progress-bar.strong-password {
+//     --mdc-linear-progress-active-indicator-color: #4caf50 !important;
+// }

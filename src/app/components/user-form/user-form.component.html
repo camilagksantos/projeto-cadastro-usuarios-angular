@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <form class="user-form">
+        <form class="user-form" #userForm="ngForm" appPasswordConfirmationValidator>
             <div class="user-form__row">
                 <mat-form-field class="user-form__item user-form__item-100">
                     <mat-label>Nome: </mat-label>
@@ -13,6 +13,7 @@
                     <mat-error>O <strong>nome</strong> é obrigatório.</mat-error>
                 </mat-form-field>
             </div>
+
 
             <div class="user-form__row">
                 <mat-form-field class="user-form__item user-form__item-50">
@@ -46,6 +47,71 @@
                     <mat-error *ngIf="emailControl.hasError('required')">O <strong>e-mail</strong> é obrigatório.</mat-error>
                     <mat-error *ngIf="emailControl.hasError('invalidEmailPattern') && !emailControl.hasError('required')">O <strong>e-mail</strong> é invalido.</mat-error>
                     <mat-error *ngIf="emailControl.hasError('invalidEmail') && !emailControl.hasError('required')">Este <strong>e-mail</strong> já esta sendo utilizado.</mat-error>
+                </mat-form-field>
+            </div>
+
+
+            <div class="user-form__row">
+                <mat-form-field class="user-form__item user-form__item-50">
+                    <mat-label>Senha: </mat-label>
+                    <input 
+                        type="text" 
+                        name="senha" 
+                        matInput 
+                        [(ngModel)]="userSelected.password"
+                        (ngModelChange)="onPasswordChange($event)"
+                        #passwordControl="ngModel"
+                        appPasswordStrengthValidator
+                        required>
+                    <mat-progress-bar 
+                        mode="determinate" 
+                        [value]="passwordStrengthValue" 
+                        [ngClass]="{
+                        'weak-password': passwordStrengthValue <= 30,
+                        'medium-password': passwordStrengthValue > 30 && passwordStrengthValue <= 60,
+                        'strong-password': passwordStrengthValue > 60
+                    }"></mat-progress-bar>
+                    <mat-error *ngIf="passwordControl.hasError('required')">A <strong>senha</strong> é obrigatória.</mat-error>
+                    <mat-error *ngIf="passwordControl.hasError('invalidPassowrdStrength') && !passwordControl.hasError('required')">Digite uma senha <strong>mais forte</strong>.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="user-form__item user-form__item-50">
+                    <mat-label>Confirmação de Senha: </mat-label>
+                    <input 
+                    autocomplete="on-time-code"
+                        type="text" 
+                        name="confirmacaoSenha" 
+                        matInput 
+                        ngModel
+                        #passwordConfirmationControl="ngModel"
+                        required>
+                    <mat-error *ngIf="passwordConfirmationControl.hasError('required')">A <strong>confirmação de senha</strong> é obrigatória.</mat-error>
+                     <mat-error *ngIf="userForm.hasError('invalidPasswordConfirmation') && !passwordConfirmationControl.hasError('required')">As <strong>senhas</strong> estão incorretas.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="user-form__row">
+                <mat-form-field class="user-form__item user-form__item-50">
+                    <mat-label>Data de Nascimento: </mat-label>
+                    <input 
+                        matInput 
+                        [matDatepicker]="picker"
+                        [min]="minDate"
+                        [max]="maxDate"
+                        name="dataNascimento" 
+                        [ngModel]="dateValue"
+                        (dateChange)="onDateChange($event)"
+                        readonly="true"
+                        required>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancelar</button>
+                            <button mat-raised-button matDatepickerApply>Confirmar</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                    <mat-error>A <strong>data de nascimento</strong> é obrigatória.</mat-error>
                 </mat-form-field>
             </div>
         </form>
