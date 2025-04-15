@@ -7,7 +7,7 @@ import { GenreListResponse } from '../types/genre-list-response';
 })
 export class GenresService {
 
-  private readonly genresLList: GenreListResponse = [
+  private readonly genresList: GenreListResponse = [
     { id: 1, description: 'Rock' },
     { id: 2, description: 'Pop' },
     { id: 3, description: 'Jazz' },
@@ -33,10 +33,15 @@ export class GenresService {
   getGenresList(): Observable<GenreListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {
-        observer.next(this.genresLList);
+        observer.next(this.genresList);
         observer.complete();
       }
       , 3000);
     });
+  }
+
+  getGenreDescription(genreId: number): string {
+    const genre = this.genresList.find(g => g.id === genreId)?.description;
+    return genre ? genre : '';
   }
 }

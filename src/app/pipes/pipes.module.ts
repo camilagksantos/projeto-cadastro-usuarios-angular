@@ -1,11 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { GenreDescriptionPipe } from './genre-description.pipe';
+import { StateDescriptionPipe } from './state-description.pipe';
+import { IsFavoriteDescriptionPipe } from './is-favorite-description.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
   ],
-  declarations: [],
-  exports: [],
+  declarations: [
+    GenreDescriptionPipe,
+    StateDescriptionPipe,
+    IsFavoriteDescriptionPipe
+  ],
+  exports: [
+    GenreDescriptionPipe,
+    StateDescriptionPipe,
+    IsFavoriteDescriptionPipe
+  ],
 })
 export class PipesModule { }

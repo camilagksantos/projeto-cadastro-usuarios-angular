@@ -46,4 +46,9 @@ export class BrazilianStatesService {
       , 3000);
     });
   }
+
+  getStateDescriptionById(id: number): string | undefined {
+    const state = this.statesList.find(state => state.id === id);
+    return state ? state.descricao : undefined;
+  }
 }

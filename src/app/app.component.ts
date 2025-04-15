@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './services/users.service';
+import { MatDialog } from '@angular/material/dialog';
 import { GenresService } from './services/genres.service';
 import { BrazilianStatesService } from './services/brazilian-states.service';
 import { UsersListResponse } from './types/users-list-response';
 import { GenreListResponse } from './types/genre-list-response';
 import { BrazilianStatesListResponse } from './types/brazilian-states-list-response';
 import { IUser } from './interfaces/user/IUser';
+import { UserBeforeAndAfterDialogComponent } from './components/user-before-and-after-dialog/user-before-and-after-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
     private readonly _usersService: UsersService,
     private readonly _genresService: GenresService,
     private readonly _statesService: BrazilianStatesService,
+    private readonly _matDialog: MatDialog
   ) { }
   
   ngOnInit(): void {
@@ -63,5 +66,21 @@ export class AppComponent implements OnInit {
 
   showRealUser() {
     console.log(this.usersList);
+  }
+
+  onFormSubmit() {
+    const originalUser = this.usersList[this.userSelectedIndex!];
+
+    this.openBeforeAndAfterDialog(originalUser, this.userSelected);
+  }
+
+  openBeforeAndAfterDialog(originalUser: IUser, userSelected: IUser) {
+    this._matDialog.open(UserBeforeAndAfterDialogComponent, {
+      data: {
+        originalUser,
+        updatedUser: userSelected,
+      },
+      minWidth: '70%',
+    });
   }
 }

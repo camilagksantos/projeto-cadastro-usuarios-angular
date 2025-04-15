@@ -9,6 +9,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -22,7 +27,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressBarModule,
     MatDatepickerModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   declarations: [],
   exports: [
@@ -33,7 +43,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressBarModule,
     MatDatepickerModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     provideNativeDateAdapter()

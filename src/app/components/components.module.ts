@@ -7,6 +7,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { UsersCardListComponent } from './users-card-list/users-card-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserBeforeAndAfterDialogComponent } from './user-before-and-after-dialog/user-before-and-after-dialog.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,13 @@ import { UserFormComponent } from './user-form/user-form.component';
   ],
   declarations: [
     UsersCardListComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserBeforeAndAfterDialogComponent
   ],
   exports: [
     UsersCardListComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserBeforeAndAfterDialogComponent
   ]
 })
 export class ComponentsModule { }
