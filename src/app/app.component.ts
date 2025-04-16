@@ -71,16 +71,25 @@ export class AppComponent implements OnInit {
   onFormSubmit() {
     const originalUser = this.usersList[this.userSelectedIndex!];
 
-    this.openBeforeAndAfterDialog(originalUser, this.userSelected);
+    this.openBeforeAndAfterDialog(originalUser, this.userSelected, this.userSelectedIndex!);
   }
 
-  openBeforeAndAfterDialog(originalUser: IUser, userSelected: IUser) {
-    this._matDialog.open(UserBeforeAndAfterDialogComponent, {
+  openBeforeAndAfterDialog(originalUser: IUser, userSelected: IUser, userSelectedIndex: number) {
+    const dialogRef = this._matDialog.open(UserBeforeAndAfterDialogComponent, {
       data: {
         originalUser,
         updatedUser: userSelected,
       },
       minWidth: '70%',
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.confirmUserUpdate(userSelected, userSelectedIndex);
+      }
+    }
+    );
+  }
+  confirmUserUpdate(userSelected: IUser, userSelectedIndex: number) {
+    this.usersList[userSelectedIndex] = structuredClone(userSelected);
   }
 }

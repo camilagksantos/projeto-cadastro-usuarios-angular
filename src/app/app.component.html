@@ -6,10 +6,9 @@
 </div>
 
 <app-user-form
+    *ngIf="userSelectedIndex !== undefined"
     [userSelected]="userSelected"
     [statesList]="statesList"
     [genresList]="genresList"
     (onFormDubmitEmitted)="onFormSubmit()"
 ></app-user-form>
-
-<button (click)="showRealUser()">Comparar usuarios</button>

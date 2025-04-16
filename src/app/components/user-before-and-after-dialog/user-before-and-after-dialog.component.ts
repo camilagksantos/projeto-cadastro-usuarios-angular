@@ -9,10 +9,14 @@ import { IUser } from '../../interfaces/user/IUser';
   styleUrl: './user-before-and-after-dialog.component.scss'
 })
 export class UserBeforeAndAfterDialogComponent {
+  hasChanges: boolean = false;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
       originalUser: IUser;
       updatedUser: IUser;
     }
-  ) { }
+  ) { 
+    this.hasChanges = JSON.stringify(this.data.originalUser) !== JSON.stringify(this.data.updatedUser);
+  }
 }

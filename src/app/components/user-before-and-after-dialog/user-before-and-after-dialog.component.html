@@ -1,84 +1,77 @@
 <h2 mat-dialog-title>Resumo das Alterações</h2>
+
 <mat-dialog-content class="mat-typography">
-    <div class="infos">
+    <p *ngIf="!hasChanges">Nenhuma alteração foi realizada.</p>
+
+    <div class="infos" *ngIf="hasChanges">
         <div class="infos__row">
             <div class="infos__item infos__header infos__header--border-top-left">Antes</div>
             <div class="infos__item infos__header infos__header--border-top-rigth">Depois</div>
         </div>
-        
-        <!-- Nome -->
+
         <div class="infos__row" *ngIf="data.originalUser.name !== data.updatedUser.name">
             <div class="infos__item"><strong>Nome:</strong> {{ data.originalUser.name }}</div>
             <div class="infos__item"><strong>Nome:</strong> {{ data.updatedUser.name }}</div>
         </div>
-        
-        <!-- Usuário -->
+
         <div class="infos__row" *ngIf="data.originalUser.username !== data.updatedUser.username">
             <div class="infos__item"><strong>Usuário:</strong> {{ data.originalUser.username }}</div>
             <div class="infos__item"><strong>Usuário:</strong> {{ data.updatedUser.username }}</div>
         </div>
-        
-        <!-- Email -->
+
         <div class="infos__row" *ngIf="data.originalUser.email !== data.updatedUser.email">
             <div class="infos__item"><strong>Email:</strong> {{ data.originalUser.email }}</div>
             <div class="infos__item"><strong>Email:</strong> {{ data.updatedUser.email }}</div>
         </div>
-        
-        <!-- Senha -->
+
         <div class="infos__row" *ngIf="data.originalUser.password !== data.updatedUser.password">
             <div class="infos__item"><strong>Senha:</strong> {{ data.originalUser.password }}</div>
             <div class="infos__item"><strong>Senha:</strong> {{ data.updatedUser.password }}</div>
         </div>
-        
-        <!-- Data de Nascimento -->
+
         <div class="infos__row" *ngIf="data.originalUser.birthDate !== data.updatedUser.birthDate">
             <div class="infos__item"><strong>Data de Nascimento:</strong> {{ data.originalUser.birthDate }}</div>
             <div class="infos__item"><strong>Data de Nascimento:</strong> {{ data.updatedUser.birthDate }}</div>
         </div>
-        
-        <!-- Estado -->
+
         <div class="infos__row" *ngIf="data.originalUser.state !== data.updatedUser.state">
             <div class="infos__item"><strong>Estado:</strong> {{ data.originalUser.state | stateDescription }}</div>
             <div class="infos__item"><strong>Estado:</strong> {{ data.updatedUser.state | stateDescription }}</div>
         </div>
+
         <ng-container *ngFor="let music of data.originalUser.musics; let i = index">
-            <!-- Verifica se existe música correspondente em updatedUser -->
-            <ng-container *ngIf="data.updatedUser.musics[i] as updatedMusic">
+            <ng-container *ngIf="data.updatedUser.musics && data.updatedUser.musics[i] as updatedMusic">
         
-                <!-- Título -->
                 <div class="infos__row" *ngIf="music.title !== updatedMusic.title">
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Título:</strong> {{ music.title }}</div>
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Título:</strong> {{ updatedMusic.title }}</div>
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Título:</strong> {{ music.title }}</div>
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Título:</strong> {{ updatedMusic.title }}</div>
                 </div>
         
-                <!-- Banda -->
                 <div class="infos__row" *ngIf="music.band !== updatedMusic.band">
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Banda:</strong> {{ music.band }}</div>
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Banda:</strong> {{ updatedMusic.band }}</div>
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Banda:</strong> {{ music.band }}</div>
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Banda:</strong> {{ updatedMusic.band }}</div>
                 </div>
         
-                <!-- Gênero -->
                 <div class="infos__row" *ngIf="music.genre !== updatedMusic.genre">
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Gênero:</strong> {{ music.genre | genreDescription }}
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Gênero:</strong> {{ music.genre | genreDescription }}
                     </div>
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Gênero:</strong> {{ updatedMusic.genre |
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Gênero:</strong> {{ updatedMusic.genre |
                         genreDescription }}</div>
                 </div>
         
-                <!-- Favorita -->
                 <div class="infos__row" *ngIf="music.isFavorite !== updatedMusic.isFavorite">
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Favorita:</strong> {{ music.isFavorite |
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Favorita:</strong> {{ music.isFavorite |
                         isFavoriteDescription }}</div>
-                    <div class="infos__item"><strong>Música {{ i+1 }} - Favorita:</strong> {{ updatedMusic.isFavorite |
+                    <div class="infos__item"><strong>Música {{ i + 1 }} - Favorita:</strong> {{ updatedMusic.isFavorite |
                         isFavoriteDescription }}</div>
                 </div>
         
             </ng-container>
         </ng-container>
-
     </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button mat-dialog-close>Confirmar</button>
+    <button mat-raised-button [mat-dialog-close]="true">Confirmar</button>
 </mat-dialog-actions>
